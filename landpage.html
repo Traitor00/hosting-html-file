@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Background</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+      }
+      #video-background {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="video-background" autoplay muted loop>
+      <source src="" type="video/mp4">
+      <source src="" type="video/webm">
+    </video>
+    <script>
+      
+      // Define an array of image sources
+      const imageSources = [
+        "4.webp",
+        "5.jpg"
+      ];
+      
+      // Define an array of video sources
+      const videoSources = [
+        "2.mp4",
+        "3.mp4"
+      ];
+      
+      // Select a random image or video source
+      const randomIndex = Math.floor(Math.random() * 2); // 0 for image, 1 for video
+      const source = randomIndex === 0 ? imageSources[Math.floor(Math.random() * imageSources.length)] : videoSources[Math.floor(Math.random() * videoSources.length)];
+      
+      // Set the background using the selected source
+      if (randomIndex === 0) {
+        document.body.style.backgroundImage = `url(${source})`;
+      } else {
+        const video = document.getElementById('video-background');
+        video.querySelector('source[type="video/mp4"]').src = source;
+        video.querySelector('source[type="video/webm"]').src = source.replace('.mp4', '.webm');
+        video.load();
+      }
+    </script>
+  </body>
+</html>
